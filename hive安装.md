@@ -139,6 +139,48 @@ mysql>set global binlog_format='MIXED';
     <value>/tmp/hive/resources</value>
     <description>Temporary local directory for added resources in the remote file system.</description>
   </property>
+
+<!-- 添加事务配置 -->
+  <property>
+
+    <name>hive.support.concurrency</name>
+
+    <value>true</value>
+
+</property>
+
+<property>
+
+    <name>hive.exec.dynamic.partition.mode</name>
+
+    <value>nonstrict</value>
+
+</property>
+
+<property>
+
+    <name>hive.txn.manager</name>
+
+    <value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
+
+</property>
+
+<property>
+
+    <name>hive.compactor.initiator.on</name>
+
+    <value>true</value>
+
+</property>
+
+<property>
+
+    <name>hive.compactor.worker.threads</name>
+
+    <value>1</value>
+
+</property>
+
 ```
 
 复制文件到其他服务端：
@@ -193,6 +235,13 @@ test
 Time taken: 1.129 seconds, Fetched: 1 row(s)
 hive> 
 ```
+
+后台启动metastore,关闭shell连接依然存在:
+nohup bin/hive --service metastore 2>&1 >> /var/log.log &
+
+hiveserver2,关闭shell连接依然存在:
+nohup bin/hive --service hiveserver2 2>&1 >> /var/log.log &
+
 
 ## 4. 问题总结
 
