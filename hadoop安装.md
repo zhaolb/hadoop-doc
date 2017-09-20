@@ -174,7 +174,7 @@ export PATH=$JAVA_HOME/bin:$ZK_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH
 </configuration>
 ```
 
-* 文件yarn-site.xml
+* 文件yarn-site.xml [yarn和mr配置参考地址](http://www.aboutyun.com/thread-11149-1-1.html)
 
 ```
 <configuration>
