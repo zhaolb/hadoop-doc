@@ -894,7 +894,9 @@ you     1
 ```
 #### 14. 在bidev191和bidev192上启动yarn的history server查看作业的历史
 
+```
 [root@bidev191 hadoop]#  mr-jobhistory-daemon.sh start historyserver
+```
 
 #### 15. 验证HA的故障自动转移是否好用
 
