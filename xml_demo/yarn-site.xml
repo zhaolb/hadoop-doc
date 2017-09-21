@@ -1,0 +1,202 @@
+<?xml version="1.0"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+<configuration>
+
+<property>   
+  <name>yarn.resourcemanager.ha.enabled</name>   
+  <value>true</value> 
+</property> 
+<property>   
+  <name>yarn.resourcemanager.cluster-id</name>   
+  <value>cdmtimehadoop-yarn</value> 
+</property> 
+<property>   
+  <name>yarn.resourcemanager.ha.rm-ids</name>   
+  <value>rm1,rm2</value> 
+</property> 
+<property>   
+  <name>yarn.resourcemanager.hostname.rm1</name>   
+  <value>cd-namenode00.host-mtime.com</value> 
+</property> 
+<property>   
+  <name>yarn.resourcemanager.hostname.rm2</name>   
+  <value>cd-namenode01.host-mtime.com</value> 
+</property> 
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm1</name>
+  <value>cd-namenode00.host-mtime.com:8088</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address.rm2</name>
+  <value>cd-namenode01.host-mtime.com:8088</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.recovery.enabled</name>
+  <value>true</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.store.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.recovery.ZKRMStateStore</value>
+</property>
+<property>   
+  <name>yarn.resourcemanager.zk-address</name>   
+  <value>cd-namenode00.host-mtime.com:2181,cd-namenode01.host-mtime.com:2181,cd-datanode00.host-mtime.com:2181,cd-datanode01.host-mtime.com:2181,cd-datanode02.host-mtime.com:2181</value> 
+</property>
+
+
+<!-- <property>
+ <name>yarn.resourcemanager.hostname</name>
+ <value>cd-namenode01.host-mtime.com</value>
+ </property> 
+<property> 
+  <name>yarn.resourcemanager.resource-tracker.address</name>
+  <value>cd-namenode01.host-mtime.com:8031</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.address</name>
+  <value>cd-namenode01.host-mtime.com:8032</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.scheduler.address</name>
+  <value>cd-namenode01.host-mtime.com:8030</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.admin.address</name>
+  <value>cd-namenode01.host-mtime.com:8033</value>
+</property>
+<property>
+  <name>yarn.resourcemanager.webapp.address</name>
+  <value>cd-namenode01.host-mtime.com:8088</value>
+</property> -->
+
+
+ <property>
+   <name>yarn.nodemanager.aux-services</name>
+   <value>mapreduce_shuffle</value>
+ </property>
+ <property>
+   <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+   <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+ </property>
+ <property>
+   <name>yarn.log-aggregation-enable</name>
+   <value>true</value>
+ </property>
+ <property>
+   <name>yarn.nodemanager.local-dirs</name>
+   <value>/data00/yarn/local,/data01/yarn/local,/data02/yarn/local,/data03/yarn/local,/data04/yarn/local,/data05/yarn/local,/data06/yarn/local,/data07/yarn/local,/data08/yarn/local,/data09/yarn/local,/data10/yarn/local,/data11/yarn/local</value>
+ </property>
+ <property>
+   <name>yarn.nodemanager.log-dirs</name>
+   <value>/data00/yarn/log,/data01/yarn/log,/data02/yarn/log,/data03/yarn/log,/data04/yarn/log,/data05/yarn/log,/data06/yarn/log,/data07/yarn/log,/data08/yarn/log,/data09/yarn/log,/data10/yarn/log,/data11/yarn/log</value>
+ </property>
+<property>
+  <name>yarn.nodemanager.remote-app-log-dir</name>
+  <value>/home/hadoop/apache-hadoop/hadoop/var/yarn/logs</value>
+</property>
+<property>
+  <name>yarn.log.aggregation-enable</name>
+  <value>true</value>
+</property>
+<property>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>83968</value>
+    <discription>每个节点可用内存,单位MB</discription>
+</property>
+<property>
+  <name>yarn.nodemanager.resource.cpu-vcores</name>
+  <value>18</value>
+</property>
+<property>
+    <name>yarn.log-aggregation-enable</name>
+    <value>true</value>
+</property>
+<property>
+   <description>Where to aggregate logs to.</description>
+   <name>yarn.nodemanager.remote-app-log-dir</name>
+   <value>/home/hadoop/apache-hadoop/hadoop/var/yarn/logs/apps</value>
+</property>
+<property>
+  <name>yarn.application.classpath</name>
+  <value>$HADOOP_CONF_DIR,
+	 $HADOOP_COMMON_HOME/share/hadoop/common/*,
+         $HADOOP_COMMON_HOME/share/hadoop/common/lib/*,
+         $HADOOP_HDFS_HOME/share/hadoop/hdfs/*,
+	 $HADOOP_HDFS_HOME/share/hadoop/hdfs/lib/*,
+         $YARN_HOME/share/hadoop/yarn/*,
+	 $YARN_HOME/share/hadoop/yarn/lib/*,
+         $YARN_HOME/share/hadoop/mapreduce/*,
+	 $YARN_HOME/share/hadoop/mapreduce/lib/*
+  </value>
+</property>
+<!-- <property>
+  <name>yarn.resourcemanager.scheduler.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+</property>-->
+<property>
+  <name>yarn.resourcemanager.scheduler.class</name>
+  <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.fair.FairScheduler</value>
+</property>
+<property>
+  <name>yarn.scheduler.fair.allocation.file</name>
+  <value>/home/hadoop/apache-hadoop/hadoop/etc/hadoop/fair-scheduler.xml</value>
+</property>
+<property>
+  <name>yarn.log.server.url</name>
+  <value>http://cd-namenode01.host-mtime.com:19888/jobhistory/logs</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.minimum-allocation-mb</name>
+  <value>4096</value>
+</property>
+<property>
+  <name>yarn.scheduler.maximum-allocation-mb</name>
+  <value>16384</value>
+</property>
+<property>
+  <name>yarn.scheduler.minimum-allocation-vcores</name>
+  <value>1</value>
+</property>
+<property>
+  <name>yarn.scheduler.maximum-allocation-vcores</name>
+  <value>6</value>
+</property>
+<property>
+  <name>yarn.nodemanager.vmem-pmem-ratio</name>
+  <value>1.8</value>
+</property>
+
+<property>
+  <name>yarn.scheduler.fair.preemption</name>
+  <value>true</value>
+</property>
+
+<property>
+   <name>yarn.nodemanager.address</name>
+   <value>${yarn.nodemanager.hostname}:8090</value>
+ </property>
+
+<!--  job history log 30 days -->
+<property>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>7776000</value>
+</property>
+<property>
+    <name>yarn.log-aggregation.retain-check-interval-seconds</name>
+    <value>259200</value>
+</property>
+
+</configuration>

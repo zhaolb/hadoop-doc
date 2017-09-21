@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<allocations>
+  <defaultQueueSchedulingPolicy>drf</defaultQueueSchedulingPolicy>
+  <defaultMinSharePreemptionTimeout>1200</defaultMinSharePreemptionTimeout>
+  <defaultFairSharePreemptionTimeout>600</defaultFairSharePreemptionTimeout>
+  <pool name="default">
+     <maxResources>10240 mb, 1 vcores</maxResources>
+     <maxRunningApps>1</maxRunningApps>
+     <weight>1.0</weight>
+  </pool>
+  <pool name="online">
+     <minResources>503808 mb, 108 vcores</minResources>
+     <maxResources>755712 mb, 162 vcores</maxResources>
+     <maxRunningApps>20</maxRunningApps>
+     <weight>1.0</weight>
+  </pool>
+
+  <pool name="develop">
+     <minResources>167936 mb, 36 vcores</minResources> 
+     <maxResources>419840 mb, 90 vcores</maxResources>
+     <maxRunningApps>8</maxRunningApps>
+     <weight>1.0</weight>
+  </pool>
+
+  <pool name="bi">
+     <minResources>167936 mb, 36 vcores</minResources>
+     <maxResources>419840 mb, 90 vcores</maxResources>
+     <maxRunningApps>8</maxRunningApps>
+     <weight>1.0</weight>
+  </pool>
+  <pool name="hadoop">
+     <minResources>40960 mb, 10 vcores</minResources>
+     <maxResources>184320 mb, 45 vcores</maxResources>
+     <maxRunningApps>8</maxRunningApps>
+     <weight>1.0</weight>
+  </pool>
+  <pool name="tc">
+     <minResources>167936 mb, 36 vcores</minResources>
+     <maxResources>419840 mb, 90 vcores</maxResources>
+     <maxRunningApps>8</maxRunningApps>
+     <weight>1.0</weight>
+   </pool>
+  
+  <!-- 与pool里的选择策略是:遇小选小 -->     
+  <userMaxAppsDefault>50</userMaxAppsDefault> 
+
+  <!-- 具体指定(specified)：应用程序被放置到它要求队列中。如果应用程序要求没有队列，也就是说，它指定了: default
+                     用户(user)：应用程序被放置到一个与谁提交它的用户的名称队列
+       primaryGroup：应用程序被放置到一个队列，谁提交它的用户的主组的名称
+       secondaryGroupExistingQueue：应用程序被放置到一个有一个与谁提交了用户的次要组名的队列。符合配置的队列中的第一次要组将被选中
+       默认(default)：应用程序被放置到一个名为default的队列
+       拒绝(reject)：应用程序被拒绝 
+  -->
+  <queuePlacementPolicy>
+    <!--<rule name="specified" create="false" /> 暂不启用: 用户提交任务时指定队列将无效-->
+    <rule name="user" create="false" />
+    <rule name="primaryGroup" create="false" />
+    <rule name="secondaryGroupExistingQueue" create="false" /> <!-- 暂不启用: 尚未指定次要组 -->
+    <!-- <rule name="reject"/>  -->
+    <rule name="default" queue="default"/>
+  </queuePlacementPolicy>
+</allocations>

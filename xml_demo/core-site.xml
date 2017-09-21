@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<!--
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License. See accompanying LICENSE file.
+-->
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+
+ <property>
+   <name>fs.defaultFS</name>
+   <value>hdfs://cdmtimehadoop</value>
+ </property>
+ <property>
+   <name>fs.trash.interval</name>
+   <value>10080</value>
+   <description>Number of minutes between trash checkpoints.If zero, the trash feature is disabled.</description>
+ </property>
+ <property>
+   <name>ha.zookeeper.quorum</name>
+   <value>cd-namenode00.host-mtime.com:2181,cd-namenode01.host-mtime.com:2181,cd-datanode00.host-mtime.com:2181,cd-datanode01.host-mtime.com:2181,cd-datanode02.host-mtime.com:2181</value>
+ </property>
+<property>
+  <name>fs.trash.checkpoint.interval</name>
+  <value>10080</value>
+</property>
+<property>
+  <name>io.native.lib.available</name>
+  <value>true</value>
+</property>
+<property>
+  <name>io.compression.codecs</name>
+  <value>org.apache.hadoop.io.compress.GzipCodec,
+        org.apache.hadoop.io.compress.DefaultCodec,
+        com.hadoop.compression.lzo.LzoCodec,
+        com.hadoop.compression.lzo.LzopCodec,
+        org.apache.hadoop.io.compress.BZip2Codec
+  </value>
+</property>
+<property>
+  <name>io.compression.codec.lzo.class</name>
+  <value>com.hadoop.compression.lzo.LzoCodec</value>
+</property>
+<property>
+  <name>io.compression.codecs</name>
+  <value>org.apache.hadoop.io.compress.GzipCodec,org.apache.hadoop.io.compress.DefaultCodec,com.hadoop.compression.lzo.LzoCodec,com.hadoop.compression.lzo.LzopCodec,org.apache.hadoop.io.compress.BZip2Codec</value>
+</property>
+<property>  
+    <name>hadoop.proxyuser.hadoop.hosts</name>  
+    <value>*</value>  
+</property>  
+<property>  
+    <name>hadoop.proxyuser.hadoop.groups</name>  
+    <value>*</value>  
+</property>
+
+<property>
+  <name>fs.permissions.umask-mode</name>
+  <value>022</value>
+</property>
+
+<property>
+   <name>hadoop.tmp.dir</name>
+   <value>/data00/tmp/hadoop-${user.name},/data01/tmp/hadoop-${user.name},/data02/tmp/hadoop-${user.name},/data03/tmp/hadoop-${user.name},/data04/tmp/hadoop-${user.name},/data05/tmp/hadoop-${user.name},/data06/tmp/hadoop-${user.name},/data07/tmp/hadoop-${user.name},/data08/tmp/hadoop-${user.name},/data09/tmp/hadoop-${user.name},/data10/tmp/hadoop-${user.name},/data11/tmp/hadoop-${user.name}</value>
+ </property>
+</configuration>
