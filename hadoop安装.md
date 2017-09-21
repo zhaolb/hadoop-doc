@@ -1,4 +1,3 @@
-
 ## hadoop单集群安装(以192.168.51.191为例)
 ### 1. 安装
 * 创建安装目录 
@@ -175,7 +174,7 @@ export PATH=$JAVA_HOME/bin:$ZK_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$PATH
 </configuration>
 ```
 
-* 文件yarn-site.xml
+* 文件yarn-site.xml [yarn和mr配置参考地址](http://www.aboutyun.com/thread-11149-1-1.html)
 
 ```
 <configuration>
@@ -893,9 +892,11 @@ writing,        1
 you     1
 [root@bidev191 hadoop]# 
 ```
+#### 14. 在bidev191和bidev192上启动yarn的history server查看作业的历史
 
+[root@bidev191 hadoop]#  mr-jobhistory-daemon.sh start historyserver
 
-#### 14. 验证HA的故障自动转移是否好用
+#### 15. 验证HA的故障自动转移是否好用
 
 观察cluster1的两个NameNode的状态，bidev191的状态是active，bidev192的状态是standby，如下图。
 
