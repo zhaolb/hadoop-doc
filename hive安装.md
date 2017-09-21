@@ -1,4 +1,3 @@
-
 ## hive集群安装(以192.168.52.160为例)
 ## 1. 安装
 * 创建安装目录 
@@ -362,7 +361,10 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 解决方案：将 $HIVE_HOME/lib 下 的 mysql-connector-java-6.0.3.jar 替换成 mysql-connector-java-5.1.18.jar。   
 原因分析：mysql-connector-java 6.x 版本 和 5.1.x 版本不兼容 , nullNamePatternMatchesAll 连接属性的默认值在 mysql-connector-java 5.1 和 6.0 之间发生了改变. 在 5.1 版本中默认值是 true, 而 6.0 版本中默认值是 false。
 
-
+## hive客户端安装
+```
+[参考地址](http://www.aboutyun.com/thread-10937-1-1.html)
+```
 
 
 
