@@ -9,13 +9,17 @@ yum -y install ant asciidoc cyrus-sasl-devel cyrus-sasl-gssapi gcc gcc-c++ krb5-
 
 ## 2.编译hue
 
-[参考地址]()
+[参考地址](http://www.cnblogs.com/sanduo1314/p/7420472.html)
 ```
 git clone https://github.com/cloudera/hue.git
 cd hue
 make apps
 
 The configuration in development mode is desktop/conf/pseudo-distributed.ini.
+
+如果编译出现问题，需要重新clean，再编译
+make clean
+make apps
 ```
 
 ## 3.修改数据库到mysql
