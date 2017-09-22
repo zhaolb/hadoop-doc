@@ -9,6 +9,15 @@ yum -y install ant asciidoc cyrus-sasl-devel cyrus-sasl-gssapi gcc gcc-c++ krb5-
 
 ## 2.编译hue
 
+[参考地址]()
+```
+git clone https://github.com/cloudera/hue.git
+cd hue
+make apps
+
+The configuration in development mode is desktop/conf/pseudo-distributed.ini.
+```
+
 ## 3.修改数据库到mysql
 
 [参考地址](http://www.cnblogs.com/ivanny/p/hue_mysql_meta_dabatase.html)
@@ -38,3 +47,4 @@ DatabaseError: (1146, "Table 'hue.desktop_settings' doesn't exist")
 
 启动hue, 能够正常访问了
 ```
+
