@@ -416,6 +416,7 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 ## Hive 2.1.1字段和表注释中文乱码
 
 [参考地址](https://my.oschina.net/jackieyeah/blog/742088)
+修改mysql中hive原数据库的编码格式如下：
 
 ```
 alter database hive default character set latin1;
