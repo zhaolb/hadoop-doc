@@ -72,7 +72,7 @@ apache-maven-3.5.0     hadoop-2.7.2  hue-3.11.0   kafka-manager-1.3.0.8  scala-2
 
 ### [十、hue安装(以192.168.52.160为例)](./hue安装.md)
 
-### [十一、jenkis安装(以192.168.52.160为例)](./jenkis安装.md)
+### [十一、jenkins安装(以192.168.52.160为例)](./jenkis安装.md)
 
 ### [十二、kafka安装(以192.168.52.160为例)](./kafka安装.md)
 
