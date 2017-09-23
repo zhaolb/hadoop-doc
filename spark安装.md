@@ -1,4 +1,3 @@
-
 ## spark安装(以192.168.52.160为例)
 ## 1. 安装
 * 创建安装目录 
@@ -130,6 +129,165 @@ Standalone模式的测试
 bin/spark-submit –class org.apache.spark.examples.JavaSparkPi –master spark://biqa160:7077 examples/jars/spark-examples_2.11-2.0.0.jar 10 4
 
 可在浏览器查看程序运行情况
+
+## 6. 集群到yarn模式测试
+
+在Master中执行
+```
+/usr/local/spark/bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster --driver-memory 1G --executor-memory 1G --executor-cores 1 /usr/local/spark/examples/jars/spark-examples_2.11-2.2.0.jar 40
+
+17/09/23 23:02:55 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/09/23 23:03:02 INFO yarn.Client: Requesting a new application from cluster with 4 NodeManagers
+17/09/23 23:03:02 INFO yarn.Client: Verifying our application has not requested more than the maximum memory capability of the cluster (8192 MB per container)
+17/09/23 23:03:02 INFO yarn.Client: Will allocate AM container, with 1408 MB memory including 384 MB overhead
+17/09/23 23:03:02 INFO yarn.Client: Setting up container launch context for our AM
+17/09/23 23:03:02 INFO yarn.Client: Setting up the launch environment for our AM container
+17/09/23 23:03:02 INFO yarn.Client: Preparing resources for our AM container
+17/09/23 23:03:04 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+17/09/23 23:03:10 INFO yarn.Client: Uploading resource file:/tmp/spark-97bd44a3-14aa-4a8a-8be6-5a2f46aa56ae/__spark_libs__3729487364604846424.zip -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0010/__spark_libs__3729487364604846424.zip
+17/09/23 23:03:19 INFO yarn.Client: Uploading resource file:/usr/local/spark/examples/jars/spark-examples_2.11-2.2.0.jar -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0010/spark-examples_2.11-2.2.0.jar
+17/09/23 23:03:20 INFO yarn.Client: Uploading resource file:/tmp/spark-97bd44a3-14aa-4a8a-8be6-5a2f46aa56ae/__spark_conf__6661014463319380674.zip -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0010/__spark_conf__.zip
+17/09/23 23:03:20 INFO spark.SecurityManager: Changing view acls to: root
+17/09/23 23:03:20 INFO spark.SecurityManager: Changing modify acls to: root
+17/09/23 23:03:20 INFO spark.SecurityManager: Changing view acls groups to:
+17/09/23 23:03:20 INFO spark.SecurityManager: Changing modify acls groups to:
+17/09/23 23:03:20 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+17/09/23 23:03:20 INFO yarn.Client: Submitting application application_1506105886034_0010 to ResourceManager
+17/09/23 23:03:21 INFO impl.YarnClientImpl: Submitted application application_1506105886034_0010
+17/09/23 23:03:22 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:22 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: N/A
+	 ApplicationMaster RPC port: -1
+	 queue: default
+	 start time: 1506179001001
+	 final status: UNDEFINED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0010/
+	 user: root
+17/09/23 23:03:23 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:24 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:25 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:26 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:27 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:28 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:29 INFO yarn.Client: Application report for application_1506105886034_0010 (state: ACCEPTED)
+17/09/23 23:03:30 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:30 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: 192.168.0.143
+	 ApplicationMaster RPC port: 0
+	 queue: default
+	 start time: 1506179001001
+	 final status: UNDEFINED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0010/
+	 user: root
+17/09/23 23:03:31 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:32 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:33 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:34 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:35 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:36 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:37 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:38 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:39 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:40 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:41 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:42 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:43 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:44 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:45 INFO yarn.Client: Application report for application_1506105886034_0010 (state: RUNNING)
+17/09/23 23:03:46 INFO yarn.Client: Application report for application_1506105886034_0010 (state: FINISHED)
+17/09/23 23:03:46 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: 192.168.0.143
+	 ApplicationMaster RPC port: 0
+	 queue: default
+	 start time: 1506179001001
+	 final status: SUCCEEDED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0010/
+	 user: root
+17/09/23 23:03:46 INFO util.ShutdownHookManager: Shutdown hook called
+17/09/23 23:03:46 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-97bd44a3-14aa-4a8a-8be6-5a2f46aa56ae
+[root@hadoop1 local]# /usr/local/spark/bin/spark-submit --class org.apache.spark.examples.SparkPi --master yarn --deploy-mode cluster --driver-memory 1G --executor-memory 1G --executor-cores 1 /usr/local/spark/examples/jars/spark-examples_2.11-2.2.0.jar 40
+17/09/23 23:04:59 WARN util.NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+17/09/23 23:05:06 INFO yarn.Client: Requesting a new application from cluster with 4 NodeManagers
+17/09/23 23:05:06 INFO yarn.Client: Verifying our application has not requested more than the maximum memory capability of the cluster (8192 MB per container)
+17/09/23 23:05:06 INFO yarn.Client: Will allocate AM container, with 1408 MB memory including 384 MB overhead
+17/09/23 23:05:06 INFO yarn.Client: Setting up container launch context for our AM
+17/09/23 23:05:06 INFO yarn.Client: Setting up the launch environment for our AM container
+17/09/23 23:05:06 INFO yarn.Client: Preparing resources for our AM container
+17/09/23 23:05:08 WARN yarn.Client: Neither spark.yarn.jars nor spark.yarn.archive is set, falling back to uploading libraries under SPARK_HOME.
+17/09/23 23:05:14 INFO yarn.Client: Uploading resource file:/tmp/spark-f8ffab26-df04-46ce-9089-a6e65e0c0f2d/__spark_libs__238880829423534068.zip -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0011/__spark_libs__238880829423534068.zip
+17/09/23 23:05:23 INFO yarn.Client: Uploading resource file:/usr/local/spark/examples/jars/spark-examples_2.11-2.2.0.jar -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0011/spark-examples_2.11-2.2.0.jar
+17/09/23 23:05:24 INFO yarn.Client: Uploading resource file:/tmp/spark-f8ffab26-df04-46ce-9089-a6e65e0c0f2d/__spark_conf__1180632848137562538.zip -> hdfs://jwlhadoop/user/root/.sparkStaging/application_1506105886034_0011/__spark_conf__.zip
+17/09/23 23:05:24 INFO spark.SecurityManager: Changing view acls to: root
+17/09/23 23:05:24 INFO spark.SecurityManager: Changing modify acls to: root
+17/09/23 23:05:24 INFO spark.SecurityManager: Changing view acls groups to:
+17/09/23 23:05:24 INFO spark.SecurityManager: Changing modify acls groups to:
+17/09/23 23:05:24 INFO spark.SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(root); groups with view permissions: Set(); users  with modify permissions: Set(root); groups with modify permissions: Set()
+17/09/23 23:05:24 INFO yarn.Client: Submitting application application_1506105886034_0011 to ResourceManager
+17/09/23 23:05:25 INFO impl.YarnClientImpl: Submitted application application_1506105886034_0011
+17/09/23 23:05:26 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:26 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: N/A
+	 ApplicationMaster RPC port: -1
+	 queue: default
+	 start time: 1506179124862
+	 final status: UNDEFINED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0011/
+	 user: root
+17/09/23 23:05:27 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:28 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:29 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:30 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:31 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:32 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:33 INFO yarn.Client: Application report for application_1506105886034_0011 (state: ACCEPTED)
+17/09/23 23:05:34 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:34 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: 192.168.0.143
+	 ApplicationMaster RPC port: 0
+	 queue: default
+	 start time: 1506179124862
+	 final status: UNDEFINED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0011/
+	 user: root
+17/09/23 23:05:35 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:36 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:37 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:38 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:39 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:40 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:41 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:42 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:43 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:44 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:45 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:46 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:47 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:48 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:49 INFO yarn.Client: Application report for application_1506105886034_0011 (state: RUNNING)
+17/09/23 23:05:50 INFO yarn.Client: Application report for application_1506105886034_0011 (state: FINISHED)
+17/09/23 23:05:50 INFO yarn.Client:
+	 client token: N/A
+	 diagnostics: N/A
+	 ApplicationMaster host: 192.168.0.143
+	 ApplicationMaster RPC port: 0
+	 queue: default
+	 start time: 1506179124862
+	 final status: SUCCEEDED
+	 tracking URL: http://hadoop1.jwl.com:8088/proxy/application_1506105886034_0011/
+	 user: root
+17/09/23 23:05:50 INFO util.ShutdownHookManager: Shutdown hook called
+17/09/23 23:05:50 INFO util.ShutdownHookManager: Deleting directory /tmp/spark-f8ffab26-df04-46ce-9089-a6e65e0c0f2d
+```
 
 
 
