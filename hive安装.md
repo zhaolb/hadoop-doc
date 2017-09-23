@@ -364,6 +364,7 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 ## hive客户端安装
 
 [参考地址](http://www.aboutyun.com/thread-10937-1-1.html)
+修改hive-site.xml配置文件如下：
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?><!--
