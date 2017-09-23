@@ -11,6 +11,8 @@ yum -y install ant asciidoc cyrus-sasl-devel cyrus-sasl-gssapi gcc gcc-c++ krb5-
 
 [参考地址](http://www.cnblogs.com/sanduo1314/p/7420472.html)
 ```
+注意：需要maven工具
+
 git clone https://github.com/cloudera/hue.git
 cd hue
 make apps
