@@ -90,3 +90,16 @@ DatabaseError: (1146, "Table 'hue.desktop_settings' doesn't exist")
 
 配置完，记得重启hadoop集群
 ```
+
+配置hdfs
+
+
+配置yarn
+
+
+配置hive
+
+
+配置hbase
+
+
