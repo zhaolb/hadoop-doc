@@ -50,7 +50,5 @@ DatabaseError: (1146, "Table 'hue.desktop_settings' doesn't exist")
 2.2) bin/hue migrate
 
 执行完以后，可以在mysql中看到，hue相应的表已经生成。
-
-启动hue, 能够正常访问了
 ```
 
