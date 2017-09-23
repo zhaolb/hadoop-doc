@@ -28,6 +28,8 @@ make apps
 
 [参考地址](http://www.cnblogs.com/ivanny/p/hue_mysql_meta_dabatase.html)
 ```
+注意：hue4.0的配置文件是hue目录下，文件名发生了改变；hue/desktop/conf/pseudo-distributed.ini
+
 hue默认使用sqlite作为元数据库，不推荐在生产环境中使用这个数据库
 使用mysql做元数据
 
@@ -52,3 +54,39 @@ DatabaseError: (1146, "Table 'hue.desktop_settings' doesn't exist")
 执行完以后，可以在mysql中看到，hue相应的表已经生成。
 ```
 
+## 4.修改配置文件
+```
+注意：hue4.0的配置文件是hue目录下，文件名发生了改变；hue/desktop/conf/pseudo-distributed.ini
+
+```
+配置hadoop集群的访问权限
+```
+由于hue的启动用户是hue，所以需要为hue添加集群的访问权限，在各节点的/usr/local/hadoop/etc/hadoop/core-site.xml，添加如下参数：
+
+<property>
+  <name>hadoop.proxyuser.hue.hosts</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.hue.groups</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.root.hosts</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.root.groups</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.jinweile.hosts</name>
+  <value>*</value>
+</property>
+<property>
+  <name>hadoop.proxyuser.jinweile.groups</name>
+  <value>*</value>
+</property>
+
+配置完，记得重启hadoop集群
+```
