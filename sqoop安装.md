@@ -30,8 +30,7 @@ vi /etc/profile
 
 export SQOOP_HOME=/opt/hadoop/sqoop-1.4.6
 
-export PATH=$JAVA_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$KAFKA_HOME/bin:$FLUME_HOME/bin:$SQO
-OP_HOME/bin:$M2_HOME/bin:$PATH
+export PATH=$JAVA_HOME/bin:$HADOOP_HOME/sbin:$HADOOP_HOME/bin:$HIVE_HOME/bin:$KAFKA_HOME/bin:$FLUME_HOME/bin:$SQOOP_HOME/bin:$M2_HOME/bin:$PATH
 
 source /etc/profile
 ```
