@@ -109,7 +109,9 @@ export ZOOCFGDIR=/opt/hadoop/zookeeper-3.4.6/conf#zookeeper如果此台服务器
 
 
 * 使用指南
+
 [参考地址](http://blog.csdn.net/wonder4/article/details/52529049)
+
 ```
 1. sqoop-1.4.6.jar
 第一步先将sqoop jar包拷贝至Hadoop的mapreduce目录下：
