@@ -1,4 +1,3 @@
-
 ### sqoop安装(以192.168.52.160为例)
 ##### 1. 下载安装
 * 创建安装目录 
@@ -109,4 +108,5 @@ export ZOOCFGDIR=/opt/hadoop/zookeeper-3.4.6/conf#zookeeper如果此台服务器
 【默认导入到hdfs目录/user/root/test_table】
 
 
-
+* 使用指南
+[参考地址](http://blog.csdn.net/wonder4/article/details/52529049)
