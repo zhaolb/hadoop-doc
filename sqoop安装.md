@@ -76,7 +76,7 @@ See 'sqoop help COMMAND' for information on a specific command.
 
 * 复制需要的类  
 ```
-注意：hadoop-common-2.7.2.jar不能导入到sqoop的lib目录下
+注意：<font color=red>hadoop-common-2.7.2.jar不能导入到sqoop的lib目录下</font>
 [root@biqa160 conf]# cp /opt/hadoop/hadoop-2.7.2/share/hadoop/common/hadoop-common-2.7.2.jar /opt/hadoop/sqoop-1.4.6/lib/
 <!-- 此类必须 -->
 [root@biqa160 conf]# cp /opt/hadoop/apache-hive-2.1.0-bin/lib/mysql-connector-java-5.1.18.jar /opt/hadoop/sqoop-1.4.6/lib/
