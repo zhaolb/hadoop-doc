@@ -1,4 +1,3 @@
-
 ## hbase集群安装(以192.168.51.191为例)
 ## 1. 安装
 * 创建安装目录 
@@ -49,7 +48,7 @@ export HBASE_MANAGES_ZK=false
 ```
 <property>  
     <name>hbase.rootdir</name>  
-    <value>hdfs://bidev191:9000/hbase</value>  
+    <value>hdfs://cluster1/hbase</value>  
 </property>  
 <property>  
     <name>hbase.master</name>  
