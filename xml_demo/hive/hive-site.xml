@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?><!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+--><configuration>
+  <!-- WARNING!!! This file is auto generated for documentation purposes ONLY! -->
+  <!-- WARNING!!! Any changes you make to this file will be ignored by Hive.   -->
+  <!-- WARNING!!! You must make your changes in hive-site.xml instead.         -->
+  <!-- Hive Execution Parameters -->
+      <property>
+            <name>hive.metastore.uris</name>
+            <value>thrift://10.214.234.110:9083,thrift://10.214.234.111:9083</value>
+            <description>Thrift URI for the remote metastore. Used by metastore client to connect to remote metastore.</description>
+         </property>
+       
+      <property>
+        <name>hive.server2.enable.doAs</name>
+        <value>true</value>
+      </property>
+    
+      <property>
+        <name>hive.users.in.admin.role</name>
+        <value>hadoop</value>
+      </property>
+    
+      <property>
+        <name>hive.security.authorization.manager</name>
+        <value>org.apache.hadoop.hive.ql.security.authorization.plugin.sqlstd.SQLStdConfOnlyAuthorizerFactory</value>
+      </property> 
+      
+        <property>
+        <name>hive.auto.convert.join</name>
+        <value>true</value>
+        <description>Whether Hive enables the optimization about converting common join into mapjoin based on the input file size</description>
+      </property>
+    
+      <property>
+        <name>hive.mapjoin.smalltable.filesize</name>
+        <value>25000000</value>
+        <description>
+          The threshold for the input file size of the small tables; if the file size is smaller
+          than this threshold, it will try to convert the common join into map join
+        </description>
+      </property>
+      
+       <property>
+        <name>hive.auto.convert.join.noconditionaltask</name>
+        <value>true</value>
+        <description>
+          Whether Hive enables the optimization about converting common join into mapjoin based on the input file size.
+          If this parameter is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than the
+          specified size, the join is directly converted to a mapjoin (there is no conditional task).
+        </description>
+      </property>
+      <property>
+        <name>hive.auto.convert.join.noconditionaltask.size</name>
+        <value>10000000</value>
+        <description>
+          If hive.auto.convert.join.noconditionaltask is off, this parameter does not take affect.
+          However, if it is on, and the sum of size for n-1 of the tables/partitions for a n-way join is smaller than this size,
+          the join is directly converted to a mapjoin(there is no conditional task). The default is 10MB
+        </description>
+      </property>
+    
+      <property>
+        <name>hive.exec.parallel</name>
+        <value>false</value>
+        <description>Whether to execute jobs in parallel</description>
+      </property>
+      
+      <property>
+        <name>hive.mapred.reduce.tasks.speculative.execution</name>
+        <value>true</value>
+        <description>Whether speculative execution for reducers should be turned on. </description>
+      </property>
+    
+       <property>
+           <name>hive.merge.mapredfiles</name>
+           <value>true</value>
+           <description>Merge small files at the end of a map-reduce job</description>
+       </property>
+       
+       <property>
+           <name>hive.map.aggr</name>
+           <value>true</value>
+           <description>Whether to use map-side aggregation in Hive Group By queries</description>
+       </property>
+       
+       <property>
+           <name>hive.merge.smallfiles.avgsize</name>
+           <value>69000000</value>
+           <description>
+               When the average output file size of a job is less than this number, Hive will start an additional
+               map-reduce job to merge the output files into bigger files. This is only done for map-only jobs
+               if hive.merge.mapfiles is true, and for map-reduce jobs if hive.merge.mapredfiles is true.
+           </description>
+      </property> 
+    
+       <property>
+        <name>hive.warehouse.subdir.inherit.perms</name>
+        <value>false</value>
+        <description>
+          Set this to false if the table directories should be created
+          with the permissions derived from dfs umask instead of
+          inheriting the permission of the warehouse or database directory.
+        </description>
+      </property>
+    
+       <property>
+        <name>hive.exec.dynamic.partition.mode</name>
+        <value>strict</value>
+        <description>
+          In strict mode, the user must specify at least one static partition
+          in case the user accidentally overwrites all partitions.
+          In nonstrict mode all partitions are allowed to be dynamic.
+        </description>
+      </property>
+
+<property>
+     <name>hive.merge.mapfiles</name>
+     <value>true</value>
+</property>
+<property>
+     <name>hive.merge.size.per.task</name>
+     <value>256000000</value>
+</property>
+<property>
+     <name>hive.merge.tezfiles</name>
+     <value>true</value>
+</property>
+<property>
+     <name>mapreduce.input.fileinputformat.split.maxsize</name>
+     <value>256000000</value>
+</property>
+<property>
+     <name>mapreduce.input.fileinputformat.split.minsize</name>
+     <value>1</value>
+</property>
+<property>
+     <name>mapreduce.input.fileinputformat.split.minsize.per.node</name>
+     <value>128000000</value>
+</property>
+<property>
+     <name>mapreduce.input.fileinputformat.split.minsize.per.rack</name>
+     <value>128000000</value>
+</property>
+
+</configuration>
