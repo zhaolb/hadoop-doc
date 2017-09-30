@@ -426,6 +426,7 @@ alter table TABLE_PARAMS modify column PARAM_VALUE varchar(4000) character set u
 alter table PARTITION_PARAMS  modify column PARAM_VALUE varchar(4000) character set utf8;
 alter table PARTITION_KEYS  modify column PKEY_COMMENT varchar(4000) character set utf8;
 alter table  INDEX_PARAMS  modify column PARAM_VALUE  varchar(4000) character set utf8;
+alter table DBS modify column `DESC` varchar(4000) character set utf8;
 ```
 
 

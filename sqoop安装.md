@@ -104,6 +104,21 @@ export ZOOCFGDIR=/opt/hadoop/zookeeper-3.4.6/conf#zookeeper如果此台服务器
 
 执行语句：
 `sqoop import --connect jdbc:mysql://192.168.52.160:3306/tc_monitor --username root --password xiaoaojianghu --table test_table --hive-import --hive-overwrite --hive-table test_table --fields-terminated-by '\t'`
+```
+从mysql导入到hive表
+sqoop import --connect jdbc:mysql://db1.jwl.com:3306/openapi?useSSL=false --username root --password 123456 --table resturl --hive-import --hive-database jwl_ods --create-hive-table --fields-terminated-by '\001' --hive-overwrite
+从hdfs导入到mysql
+sqoop export  \
+ --connect "jdbc:mysql://db1.jwl.com:3306/openapi?useUnicode=true&characterEncoding=UTF-8&useSSL=false"\
+ --username root \
+ --password 123456 \
+ --table a_tmp \
+ --m 1 \
+ --export-dir /jwl/ods/area_info/ \
+ --input-fields-terminated-by '\001'\
+ --update-key area_code \
+ --update-mode allowinsert
+```
 
 【默认导入到hdfs目录/user/root/test_table】
 
