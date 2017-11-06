@@ -286,6 +286,7 @@ spark任务的driver在集群模式deploy-mode cluster时,如果没有配置driv
 ### 2.  Hive 计算式报内存溢出：
 
 `FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+`可能是由于orc格式默认设置block siz为256m的原因，应该设置为统一的64m`
 
 ```
 在hive脚本中设置（只对当前会话有效）：
