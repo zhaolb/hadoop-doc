@@ -413,7 +413,7 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 </configuration>
 ```
 
-## Hive 字段和表注释中文乱码
+## 1. Hive 字段和表注释中文乱码
 
 [参考地址](https://my.oschina.net/jackieyeah/blog/742088)
 修改mysql中hive原数据库的编码格式如下：
@@ -429,9 +429,10 @@ alter table  INDEX_PARAMS  modify column PARAM_VALUE  varchar(4000) character se
 alter table DBS modify column `DESC` varchar(4000) character set utf8;
 ```
 
-## Hive 计算式报内存溢出：
+### 2. Hive 计算式报内存溢出：
 
-`FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+* `FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+* `可能是由于orc格式默认设置block siz为256m的原因，应该设置为统一的64m`
 
 ```
 在hive脚本中设置（只对当前会话有效）：
@@ -445,6 +446,22 @@ mapreduce.map.memory.mb=8192;
 mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
 ```
 
+### 3. orc格式文件默认256m的问题：
+
+* `现象，通过flume收集到hive中orc的block size是256m，这个需要设置hive-site.xml中的配置项`
+
+* [参考地址](http://blog.csdn.net/dabokele/article/details/51542327)
+
+```
+
+参数名	默认值	说明
+hive.exec.orc.default.stripe.size	256*1024*1024	stripe的默认大小
+hive.exec.orc.default.block.size	256*1024*1024	orc文件在文件系统中的默认block大小，从hive-0.14开始
+hive.exec.orc.dictionary.key.size.threshold	0.8	String类型字段使用字典编码的阈值
+hive.exec.orc.default.row.index.stride	10000	stripe中的分组大小
+hive.exec.orc.default.compress	ZLIB	ORC文件的默认压缩方式
+hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false直接抛出异常，true则跳过该记录
+```
 
 
 
