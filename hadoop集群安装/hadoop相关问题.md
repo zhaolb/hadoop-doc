@@ -1,7 +1,7 @@
 ## hadoop相关问题汇总：
 ### 1. yarn通过cgroup限制资源（cpu）
 
-* 开源hadoop好像与cgroup结合有点问题，可能会死机，能被复现
+`开源hadoop好像与cgroup结合有点问题，可能会死机，能被复现`
 
 * [参考地址](http://www.jianshu.com/p/e283ab7e2530)  
 
