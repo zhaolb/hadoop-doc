@@ -413,7 +413,7 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 </configuration>
 ```
 
-## Hive 2.1.1字段和表注释中文乱码
+## Hive 字段和表注释中文乱码
 
 [参考地址](https://my.oschina.net/jackieyeah/blog/742088)
 修改mysql中hive原数据库的编码格式如下：
@@ -429,7 +429,21 @@ alter table  INDEX_PARAMS  modify column PARAM_VALUE  varchar(4000) character se
 alter table DBS modify column `DESC` varchar(4000) character set utf8;
 ```
 
+## Hive 计算式报内存溢出：
 
+`FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+
+```
+在hive脚本中设置（只对当前会话有效）：
+set mapreduce.map.memory.mb=8192;
+set mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
+
+或者
+
+设置mapred-site.xml中添加两个属性：
+mapreduce.map.memory.mb=8192;
+mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
+```
 
 
 
