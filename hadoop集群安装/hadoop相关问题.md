@@ -1,7 +1,7 @@
 ## hadoop相关问题汇总：
 ### 1. yarn通过cgroup限制资源（cpu）
 
-`开源hadoop好像与cgroup结合有点问题，可能会死机，能被复现`
+* `开源hadoop好像与cgroup结合有点问题，可能会死机，能被复现`
 
 * [参考地址](http://www.jianshu.com/p/e283ab7e2530)  
 
@@ -285,8 +285,8 @@ spark任务的driver在集群模式deploy-mode cluster时,如果没有配置driv
 
 ### 2.  Hive 计算式报内存溢出：
 
-`FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
-`可能是由于orc格式默认设置block siz为256m的原因，应该设置为统一的64m`
+* `FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+* `可能是由于orc格式默认设置block siz为256m的原因，应该设置为统一的64m`
 
 ```
 在hive脚本中设置（只对当前会话有效）：
@@ -302,7 +302,7 @@ mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
 
 ### 3.  orc格式文件默认256m的问题：
 
-`现象，通过flume收集到hive中orc的block size是256m，这个需要设置hive-site.xml中的配置项`
+* `现象，通过flume收集到hive中orc的block size是256m，这个需要设置hive-site.xml中的配置项`
 
 * [参考地址](http://blog.csdn.net/dabokele/article/details/51542327)
 
