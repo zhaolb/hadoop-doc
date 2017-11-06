@@ -1,45 +1,45 @@
-## hadoopÏà¹ØÎÊÌâ»ã×Ü£º
-### 1. yarnÍ¨¹ıcgroupÏŞÖÆ×ÊÔ´£¨cpu£©
+## hadoopç›¸å…³é—®é¢˜æ±‡æ€»ï¼š
+### 1. yarné€šè¿‡cgroupé™åˆ¶èµ„æºï¼ˆcpuï¼‰
 
-* ¿ªÔ´hadoopºÃÏñÓëcgroup½áºÏÓĞµãÎÊÌâ£¬¿ÉÄÜ»áËÀ»ú£¬ÄÜ±»¸´ÏÖ
+* å¼€æºhadoopå¥½åƒä¸cgroupç»“åˆæœ‰ç‚¹é—®é¢˜ï¼Œå¯èƒ½ä¼šæ­»æœºï¼Œèƒ½è¢«å¤ç°
 
-* [²Î¿¼µØÖ·](http://www.jianshu.com/p/e283ab7e2530)  
+* [å‚è€ƒåœ°å€](http://www.jianshu.com/p/e283ab7e2530)  
 
 ```
-yarnÄ¬ÈÏÖ»¹ÜÀíÄÚ´æ×ÊÔ´,ËäÈ»Ò²¿ÉÒÔÉêÇëcpu×ÊÔ´,µ«ÊÇÔÚÃ»ÓĞcpu×ÊÔ´¸ôÀëµÄÇé¿öÏÂĞ§¹û²¢²»ÊÇÌ«ºÃ.ÔÚ¼¯Èº¹æÄ£´ó,ÈÎÎñ¶àÊ±×ÊÔ´¾ºÕùµÄÎÊÌâÓÈÎªÑÏÖØ.
-»¹ºÃyarnÌá¹©µÄLinuxContainerExecutor¿ÉÒÔÍ¨¹ıcgroupÀ´¸ôÀëcpu×ÊÔ´
+yarné»˜è®¤åªç®¡ç†å†…å­˜èµ„æº,è™½ç„¶ä¹Ÿå¯ä»¥ç”³è¯·cpuèµ„æº,ä½†æ˜¯åœ¨æ²¡æœ‰cpuèµ„æºéš”ç¦»çš„æƒ…å†µä¸‹æ•ˆæœå¹¶ä¸æ˜¯å¤ªå¥½.åœ¨é›†ç¾¤è§„æ¨¡å¤§,ä»»åŠ¡å¤šæ—¶èµ„æºç«äº‰çš„é—®é¢˜å°¤ä¸ºä¸¥é‡.
+è¿˜å¥½yarnæä¾›çš„LinuxContainerExecutorå¯ä»¥é€šè¿‡cgroupæ¥éš”ç¦»cpuèµ„æº
 
 cgroup
 
-cgroupÊÇÏµÍ³Ìá¹©µÄ×ÊÔ´¸ôÀë¹¦ÄÜ,¿ÉÒÔ¸ôÀëÏµÍ³µÄ¶àÖÖÀàĞÍµÄ×ÊÔ´,yarnÖ»ÓÃÀ´¸ôÀëcpu×ÊÔ´
+cgroupæ˜¯ç³»ç»Ÿæä¾›çš„èµ„æºéš”ç¦»åŠŸèƒ½,å¯ä»¥éš”ç¦»ç³»ç»Ÿçš„å¤šç§ç±»å‹çš„èµ„æº,yarnåªç”¨æ¥éš”ç¦»cpuèµ„æº
 
-°²×°cgroup
+å®‰è£…cgroup
 
-Ä¬ÈÏÏµÍ³ÒÑ¾­°²×°ÁËcgroupÁË,Èç¹ûÃ»ÓĞ°²×°¿ÉÒÔÍ¨¹ıÃüÁî°²×°
+é»˜è®¤ç³»ç»Ÿå·²ç»å®‰è£…äº†cgroupäº†,å¦‚æœæ²¡æœ‰å®‰è£…å¯ä»¥é€šè¿‡å‘½ä»¤å®‰è£…
 CentOS 6
 
 yum install -y libcgroup
 CentOS 7
 
 yum install -y libcgroup-tools
-È»ºóÍ¨¹ıÃüÁîÆô¶¯
+ç„¶åé€šè¿‡å‘½ä»¤å¯åŠ¨
 CentOS 6
 
 /etc/init.d/cgconfig start
 CentOS 7
 
 systemctl start cgconfig.service
-²é¿´/cgroupÄ¿Â¼,¿ÉÒÔ¿´µ½ÀïÃæÒÑ¾­´´½¨ÁËÒ»Ğ©Ä¿Â¼,ÕâĞ©Ä¿Â¼¾ÍÊÇ¿ÉÒÔ¸ôÀëµÄ×ÊÔ´
+æŸ¥çœ‹/cgroupç›®å½•,å¯ä»¥çœ‹åˆ°é‡Œé¢å·²ç»åˆ›å»ºäº†ä¸€äº›ç›®å½•,è¿™äº›ç›®å½•å°±æ˜¯å¯ä»¥éš”ç¦»çš„èµ„æº
 
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 blkio
-drwxr-xr-x 3 root root 0 3ÔÂ  19 20:56 cpu
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 cpuacct
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 cpuset
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 devices
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 freezer
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 memory
-drwxr-xr-x 2 root root 0 3ÔÂ  19 20:56 net_cls
-Èç¹ûÄ¿Â¼Ã»ÓĞ´´½¨¿ÉÒÔÖ´ĞĞ
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 blkio
+drwxr-xr-x 3 root root 0 3æœˆ  19 20:56 cpu
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 cpuacct
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 cpuset
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 devices
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 freezer
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 memory
+drwxr-xr-x 2 root root 0 3æœˆ  19 20:56 net_cls
+å¦‚æœç›®å½•æ²¡æœ‰åˆ›å»ºå¯ä»¥æ‰§è¡Œ
 
 cd /
 mkdir cgroup
@@ -50,43 +50,43 @@ mkdir cgroup/cpu
 mount -t cgroup -ocpu cpu ./cgroup/cpu/
 mkdir cgroup/memory
 mount -t cgroup -omemory memory ./cgroup/memory/
-Í¨¹ıcgroup¸ôÀëcpu×ÊÔ´µÄ²½ÖèÎª
+é€šè¿‡cgroupéš”ç¦»cpuèµ„æºçš„æ­¥éª¤ä¸º
 
-ÔÚcpuÄ¿Â¼´´½¨·Ö×é
-cgroupÒÔ×éÎªµ¥Î»¸ôÀë×ÊÔ´,Í¬Ò»¸ö×é¿ÉÒÔÊ¹ÓÃµÄ×ÊÔ´ÏàÍ¬
-Ò»¸ö×éÔÚcgroupÀïÃæÌåÏÖÎªÒ»¸öÎÄ¼ş¼Ğ,´´½¨·Ö×éÖ±½ÓÊ¹ÓÃmkdirÃüÁî¼´¿É.
-×éÏÂÃæ»¹¿ÉÒÔ´´½¨ÏÂ¼¶×é.×îÖÕ¿ÉÒÔĞÎ³ÉÒ»¸öÊ÷ĞÎ½á¹¹À´Íê³É¸´ÔÓµÄ×ÊÔ´¸ôÀë·½°¸.
-Ã¿µ±´´½¨ÁËÒ»¸ö×é,ÏµÍ³»á×Ô¶¯ÔÚÄ¿Â¼Á¢¼´´´½¨Ò»Ğ©ÎÄ¼ş,×ÊÔ´¿ØÖÆÖ÷Òª¾ÍÊÇÍ¨¹ıÅäÖÃÕâĞ©ÎÄ¼şÀ´Íê³É
---w--w--w- 1 root root 0 3ÔÂ  19 21:09 cgroup.event_control
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cgroup.procs
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.cfs_period_us
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.cfs_quota_us
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.rt_period_us
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.rt_runtime_us
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.shares
--r--r--r-- 1 root root 0 3ÔÂ  19 21:09 cpu.stat
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 notify_on_release
--rw-r--r-- 1 root root 0 3ÔÂ  19 21:09 tasks
-yarnÄ¬ÈÏÊ¹ÓÃhadoop-yarn×é×÷Îª×îÉÏ²ã,ÈÎÎñÔËĞĞÊ±yarn»áÎªÃ¿¸öcontainerÔÚhadoop-yarnÀïÃæ´´½¨Ò»¸ö×é
-yarnÖ÷ÒªÊ¹ÓÃcpu.cfs_quota_us cpu.cfs_period_us cpu.shares3¸öÎÄ¼ş
-yarnÊ¹ÓÃcgroupµÄÁ½ÖÖ·½Ê½À´¿ØÖÆcpu×ÊÔ´·ÖÅä
-ÑÏ¸ñ°´ºËÊı¸ôÀë×ÊÔ´
-¿ÉÊ¹ÓÃºËÊı = cpu.cfs_quota_us/cpu.cfs_period_us
-ÔÚyarnÖĞcpu.cfs_quota_us±»Ö±½ÓÉèÖÃÎª1000000(Õâ¸ö²ÎÊı¿ÉÒÔÉèÖÃµÄ×î´óÖµ)
-È»ºó¸ù¾İÈÎÎñÉêÇëµÄcoreÀ´¼ÆËã³öcpu.cfs_period_us
-°´±ÈÀı¸ôÀë×ÊÔ´
-°´Ã¿¸ö·Ö×éÀïÃæcpu.sharesµÄ±ÈÂÊÀ´·ÖÅäcpu
-±ÈÈçA B CÈı¸ö·Ö×é,cpu.shares·Ö±ğÉèÖÃÎª1024 1024 2048,ÄÇÃ´ËûÃÇ¿ÉÒÔÊ¹ÓÃµÄcpu±ÈÂÊÎª1:1:2
-½«½ø³ÌidÌí¼Óµ½Ö¸¶¨×éµÄtasksÎÄ¼ş
-´´½¨Íê·Ö×éºóÖ»ĞèÒª½«ÒªÏŞÖÆµÄ½ø³ÌµÄidĞ´ÈëtasksÎÄ¼ş¼´¿É,Èç¹ûĞèÒª½â³ıÏŞÖÆ,ÔÚtasksÎÄ¼şÉ¾³ı¼´¿É
-yarnÅäÖÃ
+åœ¨cpuç›®å½•åˆ›å»ºåˆ†ç»„
+cgroupä»¥ç»„ä¸ºå•ä½éš”ç¦»èµ„æº,åŒä¸€ä¸ªç»„å¯ä»¥ä½¿ç”¨çš„èµ„æºç›¸åŒ
+ä¸€ä¸ªç»„åœ¨cgroupé‡Œé¢ä½“ç°ä¸ºä¸€ä¸ªæ–‡ä»¶å¤¹,åˆ›å»ºåˆ†ç»„ç›´æ¥ä½¿ç”¨mkdirå‘½ä»¤å³å¯.
+ç»„ä¸‹é¢è¿˜å¯ä»¥åˆ›å»ºä¸‹çº§ç»„.æœ€ç»ˆå¯ä»¥å½¢æˆä¸€ä¸ªæ ‘å½¢ç»“æ„æ¥å®Œæˆå¤æ‚çš„èµ„æºéš”ç¦»æ–¹æ¡ˆ.
+æ¯å½“åˆ›å»ºäº†ä¸€ä¸ªç»„,ç³»ç»Ÿä¼šè‡ªåŠ¨åœ¨ç›®å½•ç«‹å³åˆ›å»ºä¸€äº›æ–‡ä»¶,èµ„æºæ§åˆ¶ä¸»è¦å°±æ˜¯é€šè¿‡é…ç½®è¿™äº›æ–‡ä»¶æ¥å®Œæˆ
+--w--w--w- 1 root root 0 3æœˆ  19 21:09 cgroup.event_control
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cgroup.procs
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.cfs_period_us
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.cfs_quota_us
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.rt_period_us
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.rt_runtime_us
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.shares
+-r--r--r-- 1 root root 0 3æœˆ  19 21:09 cpu.stat
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 notify_on_release
+-rw-r--r-- 1 root root 0 3æœˆ  19 21:09 tasks
+yarné»˜è®¤ä½¿ç”¨hadoop-yarnç»„ä½œä¸ºæœ€ä¸Šå±‚,ä»»åŠ¡è¿è¡Œæ—¶yarnä¼šä¸ºæ¯ä¸ªcontaineråœ¨hadoop-yarné‡Œé¢åˆ›å»ºä¸€ä¸ªç»„
+yarnä¸»è¦ä½¿ç”¨cpu.cfs_quota_us cpu.cfs_period_us cpu.shares3ä¸ªæ–‡ä»¶
+yarnä½¿ç”¨cgroupçš„ä¸¤ç§æ–¹å¼æ¥æ§åˆ¶cpuèµ„æºåˆ†é…
+ä¸¥æ ¼æŒ‰æ ¸æ•°éš”ç¦»èµ„æº
+å¯ä½¿ç”¨æ ¸æ•° = cpu.cfs_quota_us/cpu.cfs_period_us
+åœ¨yarnä¸­cpu.cfs_quota_usè¢«ç›´æ¥è®¾ç½®ä¸º1000000(è¿™ä¸ªå‚æ•°å¯ä»¥è®¾ç½®çš„æœ€å¤§å€¼)
+ç„¶åæ ¹æ®ä»»åŠ¡ç”³è¯·çš„coreæ¥è®¡ç®—å‡ºcpu.cfs_period_us
+æŒ‰æ¯”ä¾‹éš”ç¦»èµ„æº
+æŒ‰æ¯ä¸ªåˆ†ç»„é‡Œé¢cpu.sharesçš„æ¯”ç‡æ¥åˆ†é…cpu
+æ¯”å¦‚A B Cä¸‰ä¸ªåˆ†ç»„,cpu.sharesåˆ†åˆ«è®¾ç½®ä¸º1024 1024 2048,é‚£ä¹ˆä»–ä»¬å¯ä»¥ä½¿ç”¨çš„cpuæ¯”ç‡ä¸º1:1:2
+å°†è¿›ç¨‹idæ·»åŠ åˆ°æŒ‡å®šç»„çš„tasksæ–‡ä»¶
+åˆ›å»ºå®Œåˆ†ç»„ååªéœ€è¦å°†è¦é™åˆ¶çš„è¿›ç¨‹çš„idå†™å…¥tasksæ–‡ä»¶å³å¯,å¦‚æœéœ€è¦è§£é™¤é™åˆ¶,åœ¨tasksæ–‡ä»¶åˆ é™¤å³å¯
+yarné…ç½®
 
-Æô¶¯cgroupĞèÒªÅäÖÃ¼¸¸öÅäÖÃÎÄ¼ş
+å¯åŠ¨cgroupéœ€è¦é…ç½®å‡ ä¸ªé…ç½®æ–‡ä»¶
 
-etc/hadoop/yarn-site.xmlÅäÖÃ
+etc/hadoop/yarn-site.xmlé…ç½®
 
-¿ÉÒÔ²Î¿¼http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/NodeManagerCgroups.html ÅäÖÃ
-ÕâĞ©ÅäÖÃ´ó²¿·Ö¶¼ÊÇ¹Ì¶¨ÅäÖÃ
+å¯ä»¥å‚è€ƒhttp://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/NodeManagerCgroups.html é…ç½®
+è¿™äº›é…ç½®å¤§éƒ¨åˆ†éƒ½æ˜¯å›ºå®šé…ç½®
 
 <property>
     <name>yarn.nodemanager.container-executor.class</name>
@@ -97,17 +97,17 @@ etc/hadoop/yarn-site.xmlÅäÖÃ
     <value>org.apache.hadoop.yarn.server.nodemanager.util.CgroupsLCEResourcesHandler</value>
 </property>
 <property>
-    <description>yarnÊ¹ÓÃµÄcgroup×é,Ä¬ÈÏÎª/hadoop-yarn</description>
+    <description>yarnä½¿ç”¨çš„cgroupç»„,é»˜è®¤ä¸º/hadoop-yarn</description>
     <name>yarn.nodemanager.linux-container-executor.cgroups.hierarchy</name>
     <value>/hadoop-yarn</value>
 </property>
 <property>
-    <description>ÊÇ·ñ×Ô¶¯¹ÒÔØcgroup</description>
+    <description>æ˜¯å¦è‡ªåŠ¨æŒ‚è½½cgroup</description>
     <name>yarn.nodemanager.linux-container-executor.cgroups.mount</name>
     <value>true</value>
 </property>
 <property>
-    <description>cgroup¹ÒÔØÄ¿Â¼, /sys/fs/cgroup »òÕßÊÇ /cgroup,Ä¿Â¼ºÍÏµÍ³ÓĞ¹Ø</description>
+    <description>cgroupæŒ‚è½½ç›®å½•, /sys/fs/cgroup æˆ–è€…æ˜¯ /cgroup,ç›®å½•å’Œç³»ç»Ÿæœ‰å…³</description>
     <name>yarn.nodemanager.linux-container-executor.cgroups.mount-path</name>
     <value>/cgroup</value>
 </property>
@@ -116,47 +116,47 @@ etc/hadoop/yarn-site.xmlÅäÖÃ
     <value>hadoop</value>
 </property>
 <property>
-    <description>ÅäÖÃnodemanagerÊ¹ÓÃ¶àÉÙÎïÀícpu×ÊÔ´,±ÈÈç24ºË·şÎñÆ÷ÅäÖÃ90µÄ»°,×î½üÊ¹ÓÃ21.6ºË</description>
+    <description>é…ç½®nodemanagerä½¿ç”¨å¤šå°‘ç‰©ç†cpuèµ„æº,æ¯”å¦‚24æ ¸æœåŠ¡å™¨é…ç½®90çš„è¯,æœ€è¿‘ä½¿ç”¨21.6æ ¸</description>
     <name>yarn.nodemanager.resource.percentage-physical-cpu-limit</name>
     <value>90</value>
 </property>
 <property>
-    <description>ÊÇ¿ØÖÆÊÇ·ñÑÏ¸ñÏŞÖÆcpu,¼´°´ÈÎÎñÉêÇëµÄcoreÏŞÖÆ,»¹ÊÇ·ÇÑÏ¸ñÏŞÖÆ,¼´°´coreµÄ±ÈÂÊÏŞÖÆ</description>
+    <description>æ˜¯æ§åˆ¶æ˜¯å¦ä¸¥æ ¼é™åˆ¶cpu,å³æŒ‰ä»»åŠ¡ç”³è¯·çš„coreé™åˆ¶,è¿˜æ˜¯éä¸¥æ ¼é™åˆ¶,å³æŒ‰coreçš„æ¯”ç‡é™åˆ¶</description>
     <name>yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage</name>
     <value>true</value>
 </property>
 <property>
-    <description>·Ç°²È«Ä£Ê½½«»áÒÔÕâÀïÉèÖÃµÄÓÃ»§ÔËĞĞcontainer,±ÈÈçÅäÖÃhadoopÓÃ»§ÔòÒÔhadoopÔËĞĞcontainer</description>
+    <description>éå®‰å…¨æ¨¡å¼å°†ä¼šä»¥è¿™é‡Œè®¾ç½®çš„ç”¨æˆ·è¿è¡Œcontainer,æ¯”å¦‚é…ç½®hadoopç”¨æˆ·åˆ™ä»¥hadoopè¿è¡Œcontainer</description>
     <name>yarn.nodemanager.linux-container-executor.nonsecure-mode.local-user</name>
     <value>hadoop</value>
 </property>
-etc/hadoop/container-executor.cfgÅäÖÃ
+etc/hadoop/container-executor.cfgé…ç½®
 
-Õâ¸öÅäÖÃÎÄ¼şÃ¿Ïî¶¼ĞèÒªÌî,Òª²»È»»á±¨´í
+è¿™ä¸ªé…ç½®æ–‡ä»¶æ¯é¡¹éƒ½éœ€è¦å¡«,è¦ä¸ç„¶ä¼šæŠ¥é”™
 
 yarn.nodemanager.linux-container-executor.group=hadoop
 banned.users=root
 min.user.id=1000
 allowed.system.users=hadoop
-È¨ÏŞÉèÖÃ
+æƒé™è®¾ç½®
 
-ÔÚÅäÖÃÖĞÎÄ¼şµÄÈ¨ÏŞÓĞÌØÊâÒªÇó
+åœ¨é…ç½®ä¸­æ–‡ä»¶çš„æƒé™æœ‰ç‰¹æ®Šè¦æ±‚
 
 chown root:hadoop bin/container-executor
 chmod 6050 bin/container-executor
-ÏµÍ³»¹ÒªÇóetc/hadoop/container-executor.cfg µÄËùÓĞ¸¸Ä¿Â¼(Ò»Ö±µ½/ Ä¿Â¼) owner ¶¼Îª root
-Õâ¸öÂ·¾¶ÊÇÄ¬ÈÏ${HADOOP_HOME}/etc/hadoop/container-executor.cfg,Èç¹û²»·½±ãĞŞ¸ÄËùÓĞ¸¸¼¶Ä¿Â¼ÎªrootÈ¨ÏŞ,¿ÉÒÔÖØĞÂ±àÒë´úÂëµ½ÆäËûÄ¿Â¼,±ÈÈç/etc/hadoop/Ä¿Â¼
+ç³»ç»Ÿè¿˜è¦æ±‚etc/hadoop/container-executor.cfg çš„æ‰€æœ‰çˆ¶ç›®å½•(ä¸€ç›´åˆ°/ ç›®å½•) owner éƒ½ä¸º root
+è¿™ä¸ªè·¯å¾„æ˜¯é»˜è®¤${HADOOP_HOME}/etc/hadoop/container-executor.cfg,å¦‚æœä¸æ–¹ä¾¿ä¿®æ”¹æ‰€æœ‰çˆ¶çº§ç›®å½•ä¸ºrootæƒé™,å¯ä»¥é‡æ–°ç¼–è¯‘ä»£ç åˆ°å…¶ä»–ç›®å½•,æ¯”å¦‚/etc/hadoop/ç›®å½•
 
 mvn clean package -Dcontainer-executor.conf.dir=/etc/hadoop/ -DskipTests -Pnative
-ÅäÖÃºÃÒÔºó¼ì²âÊÇ·ñÅäÖÃ³É¹¦
+é…ç½®å¥½ä»¥åæ£€æµ‹æ˜¯å¦é…ç½®æˆåŠŸ
 
 ./bin/container-executor --checksetup
-Èç¹ûÃ»ÓĞÈÎºÎÊä³ö±íÊ¾ÅäÖÃ³É¹¦
-Èç¹ûÒ»ÇĞË³Àû¾Í¿ÉÒÔÆô¶¯¼¯ÈºÁË
+å¦‚æœæ²¡æœ‰ä»»ä½•è¾“å‡ºè¡¨ç¤ºé…ç½®æˆåŠŸ
+å¦‚æœä¸€åˆ‡é¡ºåˆ©å°±å¯ä»¥å¯åŠ¨é›†ç¾¤äº†
 
-²âÊÔcgroup
+æµ‹è¯•cgroup
 
-¿ÉÒÔÔËĞĞ²âÊÔ½Å±¾²âÊÔÏµÍ³
+å¯ä»¥è¿è¡Œæµ‹è¯•è„šæœ¬æµ‹è¯•ç³»ç»Ÿ
 
 ./bin/spark-submit   \
 --class org.apache.spark.examples.SparkPi   \
@@ -168,33 +168,33 @@ mvn clean package -Dcontainer-executor.conf.dir=/etc/hadoop/ -DskipTests -Pnativ
 --driver-memory 4G \
 --driver-cores 2 \
 lib/spark-examples-1.6.0-hadoop2.6.0.jar   10000
-²é¿´ÏµÍ³ÊÇ·ñÉúĞ§Ö»ÄÜµÇÂ¼µ½·şÎñÆ÷²é¿´
-Í¨¹ıtop²é¿´ĞÅÏ¢
+æŸ¥çœ‹ç³»ç»Ÿæ˜¯å¦ç”Ÿæ•ˆåªèƒ½ç™»å½•åˆ°æœåŠ¡å™¨æŸ¥çœ‹
+é€šè¿‡topæŸ¥çœ‹ä¿¡æ¯
 
 
 
-²é¿´ÊÇ·ñ´´½¨ÁËcgroup·Ö×é,ll /cgroup/hadoop-yarn/
+æŸ¥çœ‹æ˜¯å¦åˆ›å»ºäº†cgroupåˆ†ç»„,ll /cgroup/hadoop-yarn/
 
---w--w--w- 1 root root 0 3ÔÂ  17 15:44 cgroup.event_control
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 cgroup.procs
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000011
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000026
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000051
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000076
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000101
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000123
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000136
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:06 container_1489736876249_0003_01_000155
-drwxr-xr-x 2 root root 0 3ÔÂ  17 16:30 container_1489736876249_0004_01_000008
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:47 cpu.cfs_period_us
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:47 cpu.cfs_quota_us
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 cpu.rt_period_us
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 cpu.rt_runtime_us
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 cpu.shares
--r--r--r-- 1 root root 0 3ÔÂ  17 15:44 cpu.stat
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 notify_on_release
--rw-r--r-- 1 root root 0 3ÔÂ  17 15:44 tasks
-²é¿´container_*Ä¿Â¼ÏÂ cpu.cfs_period_us,¼ÆËãcpu.cfs_quota_us/cpu.cfs_period_us¼´¿ÉÖªµÀ·ÖÅäµÄºËÊı
+--w--w--w- 1 root root 0 3æœˆ  17 15:44 cgroup.event_control
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 cgroup.procs
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000011
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000026
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000051
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000076
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000101
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000123
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000136
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:06 container_1489736876249_0003_01_000155
+drwxr-xr-x 2 root root 0 3æœˆ  17 16:30 container_1489736876249_0004_01_000008
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:47 cpu.cfs_period_us
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:47 cpu.cfs_quota_us
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 cpu.rt_period_us
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 cpu.rt_runtime_us
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 cpu.shares
+-r--r--r-- 1 root root 0 3æœˆ  17 15:44 cpu.stat
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 notify_on_release
+-rw-r--r-- 1 root root 0 3æœˆ  17 15:44 tasks
+æŸ¥çœ‹container_*ç›®å½•ä¸‹ cpu.cfs_period_us,è®¡ç®—cpu.cfs_quota_us/cpu.cfs_period_uså³å¯çŸ¥é“åˆ†é…çš„æ ¸æ•°
 
 [root@- ~]# cat /cgroup/cpu/hadoop-yarn/container*/cpu.cfs_period_us
 462962
@@ -206,19 +206,19 @@ drwxr-xr-x 2 root root 0 3ÔÂ  17 16:30 container_1489736876249_0004_01_000008
 462962
 462962
 308641
-ÎÊÌâ´¦Àí
+é—®é¢˜å¤„ç†
 
-ÅäÖÃµÄ¹ı³ÌÖĞÃâ²»ÁË»áÅöÉÏÒ»Ğ©ÎÊÌâ,ÒÔÏÂÊÇÎÒÅöµ½µÄÎÊÌâ
+é…ç½®çš„è¿‡ç¨‹ä¸­å…ä¸äº†ä¼šç¢°ä¸Šä¸€äº›é—®é¢˜,ä»¥ä¸‹æ˜¯æˆ‘ç¢°åˆ°çš„é—®é¢˜
 
-sparkÈÎÎñÉêÇëÁËcore,node manager·ÖÅä²»ÕıÈ·,¶¼ÊÇ·ÖÅä1¸öºË
+sparkä»»åŠ¡ç”³è¯·äº†core,node manageråˆ†é…ä¸æ­£ç¡®,éƒ½æ˜¯åˆ†é…1ä¸ªæ ¸
 
-Õâ¸öÊÇÓÉÓÚÄ¿Ç°Ê¹ÓÃµÄcapacity schedulerµÄ×ÊÔ´¼ÆËã·½Ê½Ö»¿¼ÂÇÁËÄÚ´æ,Ã»ÓĞ¿¼ÂÇCPU
-ÕâÖÖ·½Ê½»áµ¼ÖÂ×ÊÔ´Ê¹ÓÃÇé¿öÍ³¼Æ²»×¼È·,±ÈÈçÒ»¸ösaprk³ÌĞòÆô¶¯ÃüÁî×ÊÔ´²ÎÊıÈçÏÂ
+è¿™ä¸ªæ˜¯ç”±äºç›®å‰ä½¿ç”¨çš„capacity schedulerçš„èµ„æºè®¡ç®—æ–¹å¼åªè€ƒè™‘äº†å†…å­˜,æ²¡æœ‰è€ƒè™‘CPU
+è¿™ç§æ–¹å¼ä¼šå¯¼è‡´èµ„æºä½¿ç”¨æƒ…å†µç»Ÿè®¡ä¸å‡†ç¡®,æ¯”å¦‚ä¸€ä¸ªsaprkç¨‹åºå¯åŠ¨å‘½ä»¤èµ„æºå‚æ•°å¦‚ä¸‹
 
 --num-executors 1 --executor-cores 3 --executor-memory 4G --driver-memory 4G --driver-cores 1
-DefaultResourceCalculator Í³¼ÆÕ¼2ºË
-DominantResourceCalculator Í³¼ÆÕ¼4ºË
-ĞŞ¸ÄÅäÖÃÎÄ¼ş¼´¿É½â¾ö
+DefaultResourceCalculator ç»Ÿè®¡å 2æ ¸
+DominantResourceCalculator ç»Ÿè®¡å 4æ ¸
+ä¿®æ”¹é…ç½®æ–‡ä»¶å³å¯è§£å†³
 
   <property>
     <name>yarn.scheduler.capacity.resource-calculator</name>
@@ -231,16 +231,16 @@ DominantResourceCalculator Í³¼ÆÕ¼4ºË
       multi-dimensional resources such as Memory, CPU etc.
     </description>
   </property>
-container-executorÔËĞĞÊ±±¨È±ÉÙGLIBC_2.14¿â
+container-executorè¿è¡Œæ—¶æŠ¥ç¼ºå°‘GLIBC_2.14åº“
 
 container-executor: /lib64/libc.so.6: version `GLIBC_2.14' not found (required by bin/container-executor)
-Õâ¸öºÍÏµÍ³°æ±¾ÓĞ¹Ø,Ö»ÄÜÍ¨¹ıÖØĞÂ±àÒëcontainer-executorÀ´½â¾ö
+è¿™ä¸ªå’Œç³»ç»Ÿç‰ˆæœ¬æœ‰å…³,åªèƒ½é€šè¿‡é‡æ–°ç¼–è¯‘container-executoræ¥è§£å†³
 
 mvn clean package -Dcontainer-executor.conf.dir=/etc/hadoop/ -DskipTests -Pnative
-centos 7ÏµÍ³containerÆô¶¯±¨´í,²»ÄÜĞ´Èë/cgroup/cpu
+centos 7ç³»ç»Ÿcontainerå¯åŠ¨æŠ¥é”™,ä¸èƒ½å†™å…¥/cgroup/cpu
 
-Õâ¸öÊÇyarnÔÚcentos 7ÏÂµÄÒ»¸öbug,hadoop 2.8ÒÔºóµÄ°æ±¾²Å»á½â¾ö
-Õâ¸öbugÖ÷ÒªÊÇÒòÎªcentos 7ÏÂcgroupµÄÄ¿Â¼ºÍcentos 6²»Ò»ÖÂµ¼ÖÂ,centos 7 cpuÄ¿Â¼ºÏ²¢³Écpu,cpuacct, Õâ¸ö,µ¼ÖÂµÄ´íÎó,ĞèÒª´ò²¹¶¡ºó±àÒë https://issues.apache.org/jira/browse/YARN-2194
+è¿™ä¸ªæ˜¯yarnåœ¨centos 7ä¸‹çš„ä¸€ä¸ªbug,hadoop 2.8ä»¥åçš„ç‰ˆæœ¬æ‰ä¼šè§£å†³
+è¿™ä¸ªbugä¸»è¦æ˜¯å› ä¸ºcentos 7ä¸‹cgroupçš„ç›®å½•å’Œcentos 6ä¸ä¸€è‡´å¯¼è‡´,centos 7 cpuç›®å½•åˆå¹¶æˆcpu,cpuacct, è¿™ä¸ª,å¯¼è‡´çš„é”™è¯¯,éœ€è¦æ‰“è¡¥ä¸åç¼–è¯‘ https://issues.apache.org/jira/browse/YARN-2194
 
  private String findControllerInMtab(String controller,
                                       Map<String, List<String>> entries) {
@@ -260,25 +260,41 @@ centos 7ÏµÍ³containerÆô¶¯±¨´í,²»ÄÜĞ´Èë/cgroup/cpu
 
     return null;
   }
-Éı¼¶µÄ·çÏÕ
+å‡çº§çš„é£é™©
 
-ÓÉÓÚ¸Ä±äÁË×ÊÔ´µÄ¸ôÀë·½Ê½,Éı¼¶¿ÉÄÜÓĞ¼¸¸ö·½ÃæµÄÓ°Ïì
+ç”±äºæ”¹å˜äº†èµ„æºçš„éš”ç¦»æ–¹å¼,å‡çº§å¯èƒ½æœ‰å‡ ä¸ªæ–¹é¢çš„å½±å“
 
-ÈÎÎñ×ÊÔ´·ÖÅäÎÊÌâ
+ä»»åŠ¡èµ„æºåˆ†é…é—®é¢˜
 
-Éı¼¶cgroupºóµ¥¸öÈÎÎñÈç¹ûÒÔÇ°×ÊÔ´·ÖÅä²»ºÏÀí¿ÉÄÜ»á³öÏÖ¼ÆËãÑÓÊ±Çé¿ö,³öÏÖ×ÊÔ´ÎÊÌâÊ±ĞèÒªµ÷ÕûÈÎÎñ×ÊÔ´
-ÔÚ¼¯Èº¹æÄ£Ğ¡µÄÊ±ºò¿ÉÄÜÃ»ÓĞ×ÊÔ´¿ÉÒÔµ÷Õû,ÄÇÃ´¿ÉÒÔĞŞ¸ÄÎª·ÇÑÏ¸ñÄ£Ê½,·ÇÑÏ¸ñÄ£Ê½²»ÄÜ°´ÅäÖÃÏŞÖÆ×ÊÔ´,Ö»ÄÜ±£Ö¤×ÊÔ´²»±»ÉÙÊı½ø³ÌÈ«²¿Õ¼ÓÃ
+å‡çº§cgroupåå•ä¸ªä»»åŠ¡å¦‚æœä»¥å‰èµ„æºåˆ†é…ä¸åˆç†å¯èƒ½ä¼šå‡ºç°è®¡ç®—å»¶æ—¶æƒ…å†µ,å‡ºç°èµ„æºé—®é¢˜æ—¶éœ€è¦è°ƒæ•´ä»»åŠ¡èµ„æº
+åœ¨é›†ç¾¤è§„æ¨¡å°çš„æ—¶å€™å¯èƒ½æ²¡æœ‰èµ„æºå¯ä»¥è°ƒæ•´,é‚£ä¹ˆå¯ä»¥ä¿®æ”¹ä¸ºéä¸¥æ ¼æ¨¡å¼,éä¸¥æ ¼æ¨¡å¼ä¸èƒ½æŒ‰é…ç½®é™åˆ¶èµ„æº,åªèƒ½ä¿è¯èµ„æºä¸è¢«å°‘æ•°è¿›ç¨‹å…¨éƒ¨å ç”¨
 
 <property>
     <name>yarn.nodemanager.linux-container-executor.cgroups.strict-resource-usage</name>
     <value>false</value>
 </property
-spark driver×ÊÔ´ÎÊÌâ
+spark driverèµ„æºé—®é¢˜
 
-sparkÈÎÎñµÄdriverÔÚ¼¯ÈºÄ£Ê½deploy-mode clusterÊ±,Èç¹ûÃ»ÓĞÅäÖÃdriver-coresµÄ»°Ä¬ÈÏ·ÖÅä1ºË,1ºËÔÚÈÎÎñ¹æÄ£´óÊ±ÓĞ¿ÉÄÜ×ÊÔ´»á½ôÕÅ.²ÉÓÃdeploy-mode clientÄ£Ê½µÄ²»ÊÜcgroupÏŞÖÆ
+sparkä»»åŠ¡çš„driveråœ¨é›†ç¾¤æ¨¡å¼deploy-mode clusteræ—¶,å¦‚æœæ²¡æœ‰é…ç½®driver-coresçš„è¯é»˜è®¤åˆ†é…1æ ¸,1æ ¸åœ¨ä»»åŠ¡è§„æ¨¡å¤§æ—¶æœ‰å¯èƒ½èµ„æºä¼šç´§å¼ .é‡‡ç”¨deploy-mode clientæ¨¡å¼çš„ä¸å—cgroupé™åˆ¶
 
-×÷Õß£ºÄÄÌì¸Ä¸Ä
-Á´½Ó£ºhttp://www.jianshu.com/p/e283ab7e2530
-íÔ´£º¼òÊé
-Öø×÷È¨¹é×÷ÕßËùÓĞ¡£ÉÌÒµ×ªÔØÇëÁªÏµ×÷Õß»ñµÃÊÚÈ¨£¬·ÇÉÌÒµ×ªÔØÇë×¢Ã÷³ö´¦¡£
+ä½œè€…ï¼šå“ªå¤©æ”¹æ”¹
+é“¾æ¥ï¼šhttp://www.jianshu.com/p/e283ab7e2530
+ä¾†æºï¼šç®€ä¹¦
+è‘—ä½œæƒå½’ä½œè€…æ‰€æœ‰ã€‚å•†ä¸šè½¬è½½è¯·è”ç³»ä½œè€…è·å¾—æˆæƒï¼Œéå•†ä¸šè½¬è½½è¯·æ³¨æ˜å‡ºå¤„ã€‚
+```
+
+### 1.  Hive è®¡ç®—å¼æŠ¥å†…å­˜æº¢å‡ºï¼š
+
+`FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
+
+```
+åœ¨hiveè„šæœ¬ä¸­è®¾ç½®ï¼ˆåªå¯¹å½“å‰ä¼šè¯æœ‰æ•ˆï¼‰ï¼š
+set mapreduce.map.memory.mb=8192;
+set mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
+
+æˆ–è€…
+
+è®¾ç½®mapred-site.xmlä¸­æ·»åŠ ä¸¤ä¸ªå±æ€§ï¼š
+mapreduce.map.memory.mb=8192;
+mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
 ```
