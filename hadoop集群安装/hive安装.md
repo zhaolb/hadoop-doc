@@ -363,8 +363,10 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 
 ## hive客户端安装
 
-[参考地址](http://www.aboutyun.com/thread-10937-1-1.html)
-修改hive-site.xml配置文件如下：
+* [参考地址](http://www.aboutyun.com/thread-10937-1-1.html)
+
+* 修改hive-site.xml配置文件如下：
+
 ```
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?><!--
@@ -415,8 +417,9 @@ java.sql.SQLException: Column name pattern can not be NULL or empty.
 
 ## 1. Hive 字段和表注释中文乱码
 
-[参考地址](https://my.oschina.net/jackieyeah/blog/742088)
-修改mysql中hive原数据库的编码格式如下：
+* [参考地址](https://my.oschina.net/jackieyeah/blog/742088)
+
+* 修改mysql中hive原数据库的编码格式如下：
 
 ```
 alter database hive default character set latin1;
