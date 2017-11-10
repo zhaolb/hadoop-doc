@@ -315,4 +315,16 @@ hive.exec.orc.dictionary.key.size.threshold	0.8	String类型字段使用字典�
 hive.exec.orc.default.row.index.stride	10000	stripe中的分组大小
 hive.exec.orc.default.compress	ZLIB	ORC文件的默认压缩方式
 hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false直接抛出异常，true则跳过该记录
+
+更改hive-site.xml配置到64M
+  <property>
+    <name>hive.exec.orc.default.stripe.size</name>
+    <value>67108864<alue>
+    <description>Define the default ORC stripe size, in bytes.</description>
+  </property>
+  <property>
+    <name>hive.exec.orc.default.block.size</name>
+    <value>67108864<alue>
+    <description>Define the default file system block size for ORC files.</description>
+  </property>
 ```
