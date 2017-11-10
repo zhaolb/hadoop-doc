@@ -432,7 +432,26 @@ alter table  INDEX_PARAMS  modify column PARAM_VALUE  varchar(4000) character se
 alter table DBS modify column `DESC` varchar(4000) character set utf8;
 ```
 
-### 2. Hive 计算式报内存溢出：
+## 2. Hive 通过flume收集到hive，首先需要hive支持事物，然后hive表必须为orc格式，并且表需要支持分桶
+
+* [参考地址](http://blog.csdn.net/maixia24/article/details/73250155)
+
+* hive开启事务配置如下（需要修改hive-site.xml文件）：
+
+```
+set hive.support.concurrency=true; 
+set hive.enforce.bucketing=true; 
+set hive.exec.dynamic.partition.mode=nonstrict; 
+set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
+```
+
+* hive建表语句如下：
+
+```
+
+```
+
+### 3. Hive 计算式报内存溢出：
 
 * `FATAL [main] org.apache.hadoop.mapred.YarnChild: Error running child : java.lang.OutOfMemoryError GC overhead limit exceeded`
 * `可能是由于orc格式默认设置block siz为256m的原因，应该设置为统一的64m`
@@ -449,7 +468,7 @@ mapreduce.map.memory.mb=8192;
 mapreduce.map.java.opts=-Xmx7000m -Xms7000m;
 ```
 
-### 3. orc格式文件默认256m的问题：
+### 4. orc格式文件默认256m的问题：
 
 * `现象，通过flume收集到hive中orc的block size是256m，这个需要设置hive-site.xml中的配置项`
 
@@ -464,6 +483,18 @@ hive.exec.orc.dictionary.key.size.threshold	0.8	String类型字段使用字典�
 hive.exec.orc.default.row.index.stride	10000	stripe中的分组大小
 hive.exec.orc.default.compress	ZLIB	ORC文件的默认压缩方式
 hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false直接抛出异常，true则跳过该记录
+
+更改hive-site.xml配置到64M
+  <property>
+    <name>hive.exec.orc.default.stripe.size</name>
+    <value>67108864</value>
+    <description>Define the default ORC stripe size, in bytes.</description>
+  </property>
+  <property>
+    <name>hive.exec.orc.default.block.size</name>
+    <value>67108864</value>
+    <description>Define the default file system block size for ORC files.</description>
+  </property>
 ```
 
 
