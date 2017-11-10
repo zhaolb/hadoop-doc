@@ -319,12 +319,12 @@ hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false�
 更改hive-site.xml配置到64M
   <property>
     <name>hive.exec.orc.default.stripe.size</name>
-    <value>67108864<alue>
+    <value>67108864</value>
     <description>Define the default ORC stripe size, in bytes.</description>
   </property>
   <property>
     <name>hive.exec.orc.default.block.size</name>
-    <value>67108864<alue>
+    <value>67108864</value>
     <description>Define the default file system block size for ORC files.</description>
   </property>
 ```
