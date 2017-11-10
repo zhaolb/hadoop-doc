@@ -448,7 +448,62 @@ set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DbTxnManager;
 * hive建表语句如下：
 
 ```
-
+use mx_ods;
+drop table if exists order_detail_log;
+create table if not exists order_detail_log
+(
+main_order_id string comment '主订单id',
+ticket_order_id string comment '订单id',
+main_part_code string comment '主体',
+channel_code string comment '渠道编码',
+cinema_id string comment '影院id',
+current_status string comment '
+100  "开始创建"
+101, "创建成功"
+20, "创建失败"
+102, "开始出票"
+103, "出票成功"
+80, "出票失败"
+104, "开始取消"
+105, "已取消"
+50, "取消失败"
+   --取票状态
+106, "开始取票"
+107, "已取票"
+108, "部分取票"
+   --退票状态
+109, "开始退单"
+110, "退单成功"
+3, "退单失败',
+last_status string comment '
+100  "开始创建"
+101, "创建成功"
+20, "创建失败"
+102, "开始出票"
+103, "出票成功"
+80, "出票失败"
+104, "开始取消"
+105, "已取消"
+50, "取消失败"
+   --取票状态
+106, "开始取票"
+107, "已取票"
+108, "部分取票"
+  退票状态
+109, "开始退单"
+110, "退单成功"
+3, "退单失败',
+fail_type int comment '失败类型',
+show_time string comment '放映时间',
+create_time string comment '创建时间',
+log_time string comment '日志时间'
+)
+PARTITIONED BY (dt string)
+clustered by (channel_code) into 10 buckets
+ROW FORMAT DELIMITED FIELDS TERMINATED BY '\u0001'
+stored as orc
+location '/MX/mx_ods/order_detail_log'
+TBLPROPERTIES('transactional'='true','orc.compress'='SNAPPY');
 ```
 
 ### 3. Hive 计算式报内存溢出：
