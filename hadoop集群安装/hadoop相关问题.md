@@ -328,3 +328,34 @@ hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false�
     <description>Define the default file system block size for ORC files.</description>
   </property>
 ```
+
+### 4. orc格式文件做inner join报错问题：
+
+* `现象，hive中orc格式的表做inner join时报错`
+
+* [参考地址](https://yq.aliyun.com/articles/64306)
+
+```
+方案一：
+搜索结果建议的解决方案
+set hive.auto.convert.join = false; 关闭mapjion
+调小hive.smalltable.filesize，默认是25000000（在2.0.0版本中）
+hive.mapjoin.localtask.max.memory.usage 调大到0.999
+set hive.ignore.mapjoin.hint=false; 关闭忽略mapjoin的hints
+
+方案二：
+增加的一种解决方案，调大MapredLocalTask JVM启动参数
+解决方案还是需要考虑不影响性能。
+调大MapredLocalTask 的JVM启动参数，进而可以增加maxHeapSize，同样也可以解决这个问题。如何去调大这个参数呢？通过查看MapredLocalTask代码我们可以看到
+
+      jarCmd = hiveJar + " " + ExecDriver.class.getName();
+      String hiveConfArgs = ExecDriver.generateCmdLine(conf, ctx);
+      String cmdLine = hadoopExec + " jar " + jarCmd + " -localtask -plan " + planPath.toString()
+          + " " + isSilent + " " + hiveConfArgs;
+      ...
+      Map<String, String> variables = new HashMap<String, String>(System.getenv());
+      ...
+      // Run ExecDriver in another JVM
+      executor = Runtime.getRuntime().exec(cmdLine, env, new File(workDir));
+启动新的ExecDriver，使用的是hadoop jar，系统环境参数继承了父进程的系统环境变量（里面逻辑有一些参数会覆盖）。而hadoop jar 启动java进程，内存参数会受哪些地方影响呢？如果没有设置，受hadoop自身一些脚本配置的影响；HADOOP_HEAPSIZE，如果设置了该变量，JVM参数就是-Xmx${HADOOP_HEAPSIZE}m ；如果不设置 ，就会受/usr/lib/hadoop-current/libexec/hadoop-config.sh里面配置的JAVA_HEAP_MAX=-Xmx1000m 。有没有印象？你使用hadoop jar启动的一些进程参数都是-Xmx1000m, 如果注意观察，ExecDriver这个进程也是这个参数。知道这个参数之后，可以在/usr/lib/hadoop-current/libexec/hadoop-config.sh 这里将参数调大，例如设置JAVA_HEAP_MAX=-Xmx1408m 可以解决问题。
+```
