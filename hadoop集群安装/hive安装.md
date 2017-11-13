@@ -554,7 +554,7 @@ hive.exec.orc.skip.corrupt.data	false	遇到错误数据的处理方式，false�
 
 ### 5. orc格式文件做inner join报错问题：
 
-* `现象，hive中orc格式的表做inner join时报错
+* `现象，hive中orc格式的表做inner join时报错`
 
 * [参考地址](https://yq.aliyun.com/articles/64306)
 
