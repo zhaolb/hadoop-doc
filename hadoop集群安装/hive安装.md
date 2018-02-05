@@ -583,5 +583,13 @@ set hive.ignore.mapjoin.hint=false; 关闭忽略mapjoin的hints
 启动新的ExecDriver，使用的是hadoop jar，系统环境参数继承了父进程的系统环境变量（里面逻辑有一些参数会覆盖）。而hadoop jar 启动java进程，内存参数会受哪些地方影响呢？如果没有设置，受hadoop自身一些脚本配置的影响；HADOOP_HEAPSIZE，如果设置了该变量，JVM参数就是-Xmx${HADOOP_HEAPSIZE}m ；如果不设置 ，就会受/usr/lib/hadoop-current/libexec/hadoop-config.sh里面配置的JAVA_HEAP_MAX=-Xmx1000m 。有没有印象？你使用hadoop jar启动的一些进程参数都是-Xmx1000m, 如果注意观察，ExecDriver这个进程也是这个参数。知道这个参数之后，可以在/usr/lib/hadoop-current/libexec/hadoop-config.sh 这里将参数调大，例如设置JAVA_HEAP_MAX=-Xmx1408m 可以解决问题。
 ```
 
+### 6. 删除表无反应时
+添加参数为设置为非事务表,
+```
+set hive.txn.manager=org.apache.hadoop.hive.ql.lockmgr.DummyTxnManager;
+set hive.support.concurrency=false;
+drop table if exists table_name;
 
+备注：大部分是因为表死锁（排它锁），造成不能删除表，hive表的元数据存在mysql表的HIVE_LOCKS表中，删除相关表的锁记录也可以。
+```
 
